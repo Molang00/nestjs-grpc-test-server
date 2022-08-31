@@ -10,13 +10,10 @@ export class HerosController {
 
   @GrpcMethod('HeroesService', 'FindOne')
   findOne(data: HeroById, metadata: Metadata, call: ServerUnaryCall<any, any>): Hero {
-    console.log('run at server side findOne method')
-
-    const items = [
-      { id: 1, name: 'Jhon' },
-      { id: 2, name: 'Doe' }
-    ]
-
-    return items.find( ({id}) => id === data.id)
+    return this.herosService.findOne(
+      data,
+      metadata,
+      call
+    )
   }
 }
